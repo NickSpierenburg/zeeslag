@@ -14,6 +14,8 @@ $username = 'root';
 $password = 'root';
 $db = 'ZeeslagNickAlex';
 
+//ff testen
+
 $conn = mysqli_connect($servername, $username, $password, $db);
 
 if(isset($_GET['naam']) && isset($_GET['lengte'])) {
