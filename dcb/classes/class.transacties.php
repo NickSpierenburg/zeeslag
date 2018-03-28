@@ -35,8 +35,7 @@ class transactie {
         
 	/*################## SETTERS ##################*/
 
-	function __construct($id, $vz, $ov, $wr, $tp, $op) {
-		$this->id = $id;
+	function __construct($vz, $ov, $wr, $tp, $op) {
 		$this->verzender = $vz;
 		$this->ontvanger = $ov;
 		$this->waarde = $wr;
