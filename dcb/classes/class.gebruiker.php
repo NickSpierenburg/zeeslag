@@ -5,7 +5,7 @@ class Gebruiker {
 	private $gebruikersnaam;
 	private $wachtwoord;
 	private $voornaam;
-	private $tussenvoegsel = "";
+	private $tussenvoegsel;
 	private $achternaam;
 	private $aanhef;
 	private $rechten;

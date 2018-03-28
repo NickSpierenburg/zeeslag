@@ -4,6 +4,7 @@ require_once('credentials.php');
 $conn = createconnection();
 
 require_once('classes/classes.php');
+require_once('functions/functions.php');
 
 // $bank = new Bank('De Centrale Bank', 'DCB');
 // echo $bank->getBankCode();
