@@ -79,10 +79,23 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 			var rechten = document.getElementById('re').value;
 
 			vindGebruiker(gebruikersnaam, function(gebruiker) {
-		        if (gebruiker) {
-		        	console.log("Gebruiker bestaat al");
+		        if(gebruiker) {
+		        	alert('De gekozen gebruikersnaam is helaas bezet, kies een andere!');
 		        } else {
-		        	console.log("Gebruikersnaam beschikbaar, we gaan hem aanmaken!");
+		        	var xhr = new XMLHttpRequest();
+		        	var url = 'functions/api.php';
+					var params = 'action=maakGebruiker&gebruikersnaam='+gebruikersnaam+'&wachtwoord='+wachtwoord+'&voornaam='+voornaam+'&tussenvoegsel='+tussenvoegsel+'&achternaam='+achternaam+'&aanhef='+aanhef+'&rechten='+rechten;
+					xhr.open("POST", url, true);
+					xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+					xhr.onreadystatechange = function() {
+						if(xhr.readyState === 4 && xhr.status === 200) {
+							if(xhr.responseText) {
+								alert(xhr.responseText);
+							}
+						}
+					}
+					xhr.send(params);
 		        }
 		    });
 		}
