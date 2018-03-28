@@ -47,7 +47,7 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 <html>
 <head>
 	<script>
-		function vindGebruiker(gn) {
+		function vindGebruiker(gn, callback) {
 
 			var xhr = new XMLHttpRequest();
 			var url = 'functions/api.php';
@@ -60,10 +60,10 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 					if(xhr.responseText) {
 						var gebruiker = JSON.parse(xhr.responseText);
 						// console.log(gebruiker);
-						return true;
+						callback(gebruiker);
 					} else {
 						// console.log('De gebruikersnaam ' + gn + ' is nog beschikbaar!');
-						return false;
+						callback(false);
 					}
 				}
 			}
@@ -80,7 +80,13 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 			var aanhef = document.getElementById('ah').value;
 			var rechten = document.getElementById('re').value;
 
-			console.log(vindGebruiker(gebruikersnaam));
+			vindGebruiker(gebruikersnaam, function(gebruiker) {
+		        if (gebruiker) {
+		        	console.log("Gebruiker bestaat al");
+		        } else {
+		        	console.log("Gebruikersnaam beschikbaar, we gaan hem aanmaken!");
+		        }
+		    });
 		}
 	</script>
 </head>
