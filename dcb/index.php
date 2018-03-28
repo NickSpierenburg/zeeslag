@@ -13,17 +13,31 @@ require_once('classes/classes.php');
 
 
 $user = new Gebruiker(1, 'Admin', '12345', 'Nick', '', 'Spierenburg', 'Hr', 1);
-
+$rekening = new rekening('MCB12345', $user->getGebruikersnaam(), 5000);
 echo 'Welkom, ' . $user->getVolledigeNaam();
 echo '<br>';
 echo 'Uw gekozen gebruikersnaam is ' . $user->getGebruikersnaam() . ' met als wachtwoord ' . $user->getWachtwoord();
-echo '<hr>';
 //$user->maakGebruiker($conn); //WERKT!
-
-$rekening = new rekening('MCB12345', 'Admin', 5000);
-echo 'Uw nieuwe rekenings nummer is '. $rekening->getRekeningNummer();
+echo '<br>Uw nieuwe rekenings nummer is '. $rekening->getRekeningNummer();
 echo '<br>';
 echo 'Met uw totaale balans is :'. $rekening->getBalans();
-echo '<br>';
 //$rekening->maakRekening($conn); //WERKT OOK
+echo '<br><hr>';
+
+$user_2 = new Gebruiker(2, 'Geert', '54321', 'Geert', '', 'Schippers', 'Hr', 1);
+$rekening_2 = new rekening('MCB00001',$user_2->getGebruikersnaam(), 5000);
+echo 'Welkom, ' . $user_2->getVolledigeNaam();
+echo '<br>';
+echo 'Uw gekozen gebruikersnaam is ' . $user_2->getGebruikersnaam() . ' met als wachtwoord ' . $user_2->getWachtwoord();
+//$user_2->maakGebruiker($conn); //WERKT!
+echo '<br>Uw nieuwe rekenings nummer is '. $rekening_2->getRekeningNummer();
+echo '<br>';
+echo 'Met uw totaale balans is :'. $rekening_2->getBalans();
+//$rekening_2->maakRekening($conn); //WERKT OOK
+echo '<hr>';
+
+$transactie =  new transactie($rekening_2, $rekening, '6000', 'handmatig', 'test');
+echo $transactie->getVerzender()->getRekeningNummer().' stuurt '.$transactie->getWaarde().' naar '.$transactie->getOntvanger()->getRekeningNummer().' type: '.$transactie->getType().' Met als opmerking '.$transactie->getOpmerking();
+echo '<hr>';
+$transactie->MaakOver($conn, $rekening_2, $rekening);
 ?>

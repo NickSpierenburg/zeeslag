@@ -42,6 +42,26 @@ class transactie {
 		$this->type = $tp;
 		$this->opmerking = $op;
 	}
+        function MaakOver($conn = false){
+            if( $this->verzender->balans >= $this->waarde){
+                $this->verzender->balans = $this->verzender->balans - $this->waarde;
+                $sqlUpdateVerzender = 'UPDATE `dcb_rekening` SET `balans`='.$this->verzender->getBalans().' WHERE rekening_nummer = "'.$this->verzender->getRekeningNummer().'";';
+                $conn->query($sqlUpdateVerzender);
+                
+                $this->ontvanger->balans = $this->ontvanger->balans + $this->waarde;
+                $sqlUpdateOntvanger = 'UPDATE `dcb_rekening` SET `balans`='.$this->ontvanger->getBalans().' WHERE rekening_nummer = "'.$this->ontvanger->getRekeningNummer().'";';
+                $conn->query($sqlUpdateOntvanger);   
+//                UPDATE `dcb_rekening` SET `balans`=5300 WHERE rekening_nummer = "MCB00001"
+                echo $sqlUpdateVerzender;
+                echo '<br>';
+                echo $sqlUpdateOntvanger;
+            }else{
+                echo' Je hebt niet genoeg op je acount staan';
+            }       
+        } 
+
+        
+        
 
 }
 
