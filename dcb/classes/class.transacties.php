@@ -5,7 +5,7 @@ class transactie {
 	private $verzender;
 	private $ontvanger;
 	private $waarde;
-	private $type
+	private $type;
 	private $opmerking;
 
 	/*################## GETTERS ##################*/
@@ -30,7 +30,7 @@ class transactie {
 	}
 
 	function getOpmerking() {
-		return $this->;opmerking
+		return $this->opmerking;
 	}
         
 	/*################## SETTERS ##################*/
