@@ -18,6 +18,6 @@ echo 'Welkom, ' . $user->getVolledigeNaam();
 echo '<br>';
 echo 'Uw gekozen gebruikersnaam is ' . $user->getGebruikersnaam() . ' met als wachtwoord ' . $user->getWachtwoord();
 echo '<hr>';
-$user->maakGebruiker();
+// $user->maakGebruiker($conn); //WERKT!
 
 ?>
