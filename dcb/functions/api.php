@@ -37,6 +37,11 @@ switch($action) {
 		$aanhef = $_REQUEST['aanhef'];
 		$rechten = $_REQUEST['rechten'];
 
+		$options = [
+		    'cost' => 12,
+		];
+		$wachtwoord = password_hash($wachtwoord, PASSWORD_BCRYPT, $options);
+
 		$gebruiker = new Gebruiker(0,$gebruikersnaam,$wachtwoord,$voornaam,$tussenvoegsel,$achternaam,$aanhef,$rechten);
 		$gebruiker->maakGebruiker($conn);
 

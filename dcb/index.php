@@ -71,7 +71,7 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 
 		function maakGebruiker() {
 			var gebruikersnaam = document.getElementById('gn').value;
-			var wachtwoord = document.getElementById('ww'.value);
+			var wachtwoord = document.getElementById('ww').value;
 			var voornaam = document.getElementById('vn').value;
 			var tussenvoegsel = document.getElementById('tv').value;
 			var achternaam = document.getElementById('an').value;
