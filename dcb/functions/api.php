@@ -3,6 +3,8 @@
 require_once('../credentials.php');
 $conn = createconnection();
 
+require_once('../classes/classes.php');
+
 $action = '';
 
 if(isset($_REQUEST['action'])) {
@@ -22,19 +24,30 @@ switch($action) {
 				$jsonRow = json_encode($row);
 				print_r($jsonRow);
 			}
-
-			return true;
-		} else {
-			return false;
 		}
 
-		// $wachtwoord = $_REQUEST['wachtwoord'];
-		// $voornaam = $_REQUEST['voornaam'];
-		// $tussenvoegsel = $_REQUEST['tussenvoegsel'];
-		// $achternaam = $_REQUEST['achternaam'];
-		// $aanhef = $_REQUEST['aanhef'];
-		// $rechten = $_REQUEST['rechten'];
-		// break;
+		break;
+
+	case 'maakGebruiker':
+		$gebruikersnaam = $_REQUEST['gebruikersnaam'];
+		$wachtwoord = $_REQUEST['wachtwoord'];
+		$voornaam = $_REQUEST['voornaam'];
+		$tussenvoegsel = $_REQUEST['tussenvoegsel'];
+		$achternaam = $_REQUEST['achternaam'];
+		$aanhef = $_REQUEST['aanhef'];
+		$rechten = $_REQUEST['rechten'];
+
+		$options = [
+		    'cost' => 12,
+		];
+		$wachtwoord = password_hash($wachtwoord, PASSWORD_BCRYPT, $options);
+
+		$gebruiker = new Gebruiker(0,$gebruikersnaam,$wachtwoord,$voornaam,$tussenvoegsel,$achternaam,$aanhef,$rechten);
+		$gebruiker->maakGebruiker($conn);
+
+		var_dump($gebruiker);
+
+		break;
 }
 
 ?>
