@@ -59,10 +59,8 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 				if(xhr.readyState === 4 && xhr.status === 200) {
 					if(xhr.responseText) {
 						var gebruiker = JSON.parse(xhr.responseText);
-						// console.log(gebruiker);
 						callback(gebruiker);
 					} else {
-						// console.log('De gebruikersnaam ' + gn + ' is nog beschikbaar!');
 						callback(false);
 					}
 				}
