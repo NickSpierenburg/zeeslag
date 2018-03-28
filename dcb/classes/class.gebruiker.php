@@ -10,6 +10,17 @@ class Gebruiker {
 	private $aanhef;
 	private $rechten;
 
+	function __construct($id, $gn, $ww, $vn, $tv, $an, $ah, $re) {
+		$this->id = $id;
+		$this->gebruikersnaam = $gn;
+		$this->wachtwoord = $ww;
+		$this->voornaam = $vn;
+		$this->tussenvoegsel = $tv;
+		$this->achternaam = $an;
+		$this->aanhef = $ah;
+		$this->rechten = $re;
+	}
+
 	/*################## GETTERS ##################*/
 	function getId() {
 		return $this->id;
@@ -48,16 +59,42 @@ class Gebruiker {
 	}
 
 	/*################## SETTERS ##################*/
-
-	function __construct($id, $gn, $ww, $vn, $tv, $an, $ah, $re) {
+	function setId($id) {
 		$this->id = $id;
+	}
+
+	function setGebruikersnaam($gn) {
 		$this->gebruikersnaam = $gn;
+	}
+
+	function setWachtwoord($ww) {
 		$this->wachtwoord = $ww;
+	}
+
+	function setVoornaam($vn) {
 		$this->voornaam = $vn;
+	}
+
+	function setTussenvoegsel($tv) {
 		$this->tussenvoegsel = $tv;
+	}
+
+	function setAchternaam($an) {
 		$this->achternaam = $an;
+	}
+
+	function setAanhef($ah) {
 		$this->aanhef = $ah;
+	}
+
+	function setRechten($re) {
 		$this->rechten = $re;
+	}
+
+	/*################## DAO ##################*/
+	function maakGebruiker($conn = false) {
+		$sql = 'INSERT INTO dcb_gebruikers (gebruikersnaam,wachtwoord,voornaam,tussenvoegsel,achternaam,aanhef,rechten) VALUES ("'.$this->gebruikersnaam.'","'.$this->wachtwoord.'","'.$this->voornaam.'","'.$this->tussenvoegsel.'","'.$this->achternaam.'","'.$this->aanhef.'",'.$this->rechten.')';
+		$conn->query($sql);
 	}
 
 }
