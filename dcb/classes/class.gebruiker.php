@@ -1,11 +1,11 @@
 <?php
 
 class Gebruiker {
-	private $id;
+	private $id = 0;
 	private $gebruikersnaam;
 	private $wachtwoord;
 	private $voornaam;
-	private $tussenvoegsel = "";
+	private $tussenvoegsel;
 	private $achternaam;
 	private $aanhef;
 	private $rechten;
