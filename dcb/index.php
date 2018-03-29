@@ -18,6 +18,7 @@ echo 'Welkom, ' . $user->getVolledigeNaam();
 echo '<br>';
 echo 'Uw gekozen gebruikersnaam is ' . $user->getGebruikersnaam() . ' met als wachtwoord ' . $user->getWachtwoord();
 //$user->maakGebruiker($conn); //WERKT!
+
 echo '<br>Uw nieuwe rekenings nummer is '. $rekening->getRekeningNummer();
 echo '<br>';
 echo 'Met uw totaale balans is :'. $rekening->getBalans();
@@ -36,8 +37,8 @@ echo 'Met uw totaale balans is :'. $rekening_2->getBalans();
 //$rekening_2->maakRekening($conn); //WERKT OOK
 echo '<hr>';
 
-$transactie =  new transactie($rekening_2, $rekening, '6000', 'handmatig', 'test');
-echo $transactie->getVerzender()->getRekeningNummer().' stuurt '.$transactie->getWaarde().' naar '.$transactie->getOntvanger()->getRekeningNummer().' type: '.$transactie->getType().' Met als opmerking '.$transactie->getOpmerking();
+$transactie =  new transactie($rekening_2, $rekening, '1', 'handmatig', 'test');
+//echo $transactie->getVerzender()->getRekeningNummer().' stuurt '.$transactie->getWaarde().' naar '.$transactie->getOntvanger()->getRekeningNummer().' type: '.$transactie->getType().' Met als opmerking '.$transactie->getOpmerking();
 echo '<hr>';
-$transactie->MaakOver($conn, $rekening_2, $rekening);
+//$transactie->MaakOver($conn, $rekening_2, $rekening); //werkt?
 ?>

@@ -51,7 +51,6 @@ class transactie {
                 $this->ontvanger->balans = $this->ontvanger->balans + $this->waarde;
                 $sqlUpdateOntvanger = 'UPDATE `dcb_rekening` SET `balans`='.$this->ontvanger->getBalans().' WHERE rekening_nummer = "'.$this->ontvanger->getRekeningNummer().'";';
                 $conn->query($sqlUpdateOntvanger);   
-//                UPDATE `dcb_rekening` SET `balans`=5300 WHERE rekening_nummer = "MCB00001"
                 echo $sqlUpdateVerzender;
                 echo '<br>';
                 echo $sqlUpdateOntvanger;
