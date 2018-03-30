@@ -1,6 +1,6 @@
 <?php
 
-class transactie {
+class Transactie {
 	private $id;
 	private $verzender;
 	private $ontvanger;
