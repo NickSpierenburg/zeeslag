@@ -15,7 +15,7 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 
 
 // $user = new Gebruiker(1, 'Admin', '12345', 'Nick', '', 'Spierenburg', 'Hr', 1);
-// $rekening = new rekening('MCB12345', $user->getGebruikersnaam(), 5000);
+// $rekening = new Rekening('MCB12345', $user->getGebruikersnaam(), 5000);
 // echo 'Welkom, ' . $user->getVolledigeNaam();
 // echo '<br>';
 // echo 'Uw gekozen gebruikersnaam is ' . $user->getGebruikersnaam() . ' met als wachtwoord ' . $user->getWachtwoord();
@@ -27,7 +27,7 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 // echo '<br><hr>';
 
 // $user_2 = new Gebruiker(2, 'Geert', '54321', 'Geert', '', 'Schippers', 'Hr', 1);
-// $rekening_2 = new rekening('MCB00001',$user_2->getGebruikersnaam(), 5000);
+// $rekening_2 = new Rekening('MCB00001',$user_2->getGebruikersnaam(), 5000);
 // echo 'Welkom, ' . $user_2->getVolledigeNaam();
 // echo '<br>';
 // echo 'Uw gekozen gebruikersnaam is ' . $user_2->getGebruikersnaam() . ' met als wachtwoord ' . $user_2->getWachtwoord();
@@ -38,7 +38,7 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 // //$rekening_2->maakRekening($conn); //WERKT OOK
 // echo '<hr>';
 
-// $transactie =  new transactie($rekening_2, $rekening, '6000', 'handmatig', 'test');
+// $transactie =  new Transactie($rekening_2, $rekening, '6000', 'handmatig', 'test');
 // echo $transactie->getVerzender()->getRekeningNummer().' stuurt '.$transactie->getWaarde().' naar '.$transactie->getOntvanger()->getRekeningNummer().' type: '.$transactie->getType().' Met als opmerking '.$transactie->getOpmerking();
 // echo '<hr>';
 // $transactie->MaakOver($conn, $rekening_2, $rekening);

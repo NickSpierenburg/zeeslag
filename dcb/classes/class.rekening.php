@@ -1,5 +1,5 @@
 <?php
-class rekening {
+class Rekening {
 	private $nummer;
 	private $user_id;
 	public $balans;
