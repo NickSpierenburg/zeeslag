@@ -81,6 +81,8 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 			vindGebruiker(gebruikersnaam, function(gebruiker) {
 		        if(gebruiker) {
 		        	alert('De gekozen gebruikersnaam is helaas bezet, kies een andere!');
+		        	document.getElementById('gn').value = '';
+		        	document.getElementById('gn').focus();
 		        } else {
 		        	var xhr = new XMLHttpRequest();
 		        	var url = 'functions/api.php';
@@ -98,6 +100,19 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 					xhr.send(params);
 		        }
 		    });
+		}
+
+		function loginGebruiker() {
+			var gebruikersnaam = document.getElementById('gn').value;
+			var wachtwoord = document.getElementById('ww').value;
+
+			vindGebruiker(gebruikersnaam, function(gebruiker) {
+				if(gebruiker) {
+					alert('probeer in te loggen');
+				} else {
+					alert('onjuiste gebruiker');
+				}
+			});
 		}
 	</script>
 </head>

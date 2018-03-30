@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once('../credentials.php');
 $conn = createconnection();
@@ -46,6 +47,26 @@ switch($action) {
 		$gebruiker->maakGebruiker($conn);
 
 		var_dump($gebruiker);
+
+		break;
+
+	case 'loginGebruiker':
+		$gebruikersnaam = $_REQUEST['gebruikersnaam'];
+		$wachtwoord = $_REQUEST['wachtwoord'];
+
+		$sql = 'SELECT * FROM dcb_gebruikers WHERE gebruikersnaam = "'.$gebruikersnaam.'"';
+		$result = $conn->query($sql);
+		while($row = $result->fetch_assoc()) {
+			$hash = $row['wachtwoord'];
+			if(password_verify($wachtwoord,$hash)) {
+				// print_r($row);
+				$gebruiker = new Gebruiker($row['id'],$gebruikersnaam,$hash,$row['voornaam'],$row['tussenvoegsel'],$row['achternaam'],$row['aanhef'],$row['rechten']);
+				$_SESSION['gebruiker'] = $gebruiker;
+				print_r($_SESSION['gebruiker']);
+				echo $_SESSION['gebruiker']->getId();
+			}
+			
+		}
 
 		break;
 }
