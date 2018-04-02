@@ -1,18 +1,23 @@
 <?php
+    require_once('credentials.php');
+    require_once 'functions/functions.php';
+  session_start();
   $errorMessage = '';
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $gebruikersnaam = $_POST["username"];
-    $query = vindGebruiker($conn ,$gebruikersnaam);
-    $user = mysqli_fetch_assoc($query);
-    $hash = $user["password"];
-    $valid = CheckWachtwoord($conn=false,$_POST["password"],$hash);
-    $admin = $user["admin"] == 1;
+    $gebruikersNaam = $_POST["gebruikersnaam"];
+    $query = zoekGebruiker($gebruikersNaam);
+    $gebruiker = mysqli_fetch_assoc($query);
+    $hash = $gebruiker["wachtwoord"];
+    $valid = password_verify($_POST["wachtwoord"],$hash);
+    $admin = $gebruiker["rechten"] == 1;
     if ($valid && $admin) {
-      $_SESSION['user'] = $user;
-      header('Location: ./admin/index.php');
+        session_reset();
+        $_SESSION['gebruiker'] = $gebruiker;
+        header('Location: ./admin/index.php?gebruikersnaam='.$gebruikersNaam);
     } elseif ($valid) {
-      $_SESSION['user'] = $user;
-      header('Location: ./guest/index.php');
+        session_reset();
+        $_SESSION['gebruiker'] = $gebruiker;
+        header('Location: ./gebruiker/index.php');
     } else {
       $errorMessage = "Incorrect username and/or password. Please try again.";
     }
@@ -22,9 +27,9 @@
 <div class='form-container'>
   <p class='error'><?= $errorMessage; ?></p>
   <form method='post' action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    <input type='text' id='username' name='username' placeholder='Username...'>
+    <input type='text' id='username' name='gebruikersnaam' placeholder='Username...'>
 
-    <input type='password' id='password' name='password' placeholder='Password...'>
+    <input type='password' id='password' name='wachtwoord' placeholder='Password...'>
 
     <input type='submit' value='submit'>
   </form>

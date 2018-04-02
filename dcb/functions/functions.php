@@ -15,12 +15,9 @@ function vindGebruiker($conn, $gebruikersnaam) {
 		return false;
 	}
 }
-function CheckWachtwoord($conn, $gebruikersnaam, $hash){
-    $sql = "SELECT `wachtwoord` FROM `dcb_gebruikers` WHERE gebruikersnaam='".$gebruikersnaam."'";
-    $result = $result = $conn->query($sql);
-    if($hash === $result){
-        echo 'gelukt';
-    }else{
-        echo 'helaas';
-    }
+
+function ZoekGebruiker($gebruikersnaam){
+    $conn = createconnection();       
+     $sql = 'SELECT * FROM dcb_gebruikers WHERE gebruikersnaam = "'.$gebruikersnaam.'"';
+     return $conn->query($sql);
 }
