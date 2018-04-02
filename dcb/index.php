@@ -1,5 +1,4 @@
 <?php
-
 require_once('credentials.php');
 $conn = createconnection();
 
@@ -38,10 +37,10 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 // //$rekening_2->maakRekening($conn); //WERKT OOK
 // echo '<hr>';
 
-// $transactie =  new Transactie($rekening_2, $rekening, '6000', 'handmatig', 'test');
-// echo $transactie->getVerzender()->getRekeningNummer().' stuurt '.$transactie->getWaarde().' naar '.$transactie->getOntvanger()->getRekeningNummer().' type: '.$transactie->getType().' Met als opmerking '.$transactie->getOpmerking();
-// echo '<hr>';
-// $transactie->MaakOver($conn, $rekening_2, $rekening);
+ $transactie =  new Transactie($rekening_2, $rekening, '6000', 'handmatig', 'test');
+ echo $transactie->getVerzender()->getRekeningNummer().' stuurt '.$transactie->getWaarde().' naar '.$transactie->getOntvanger()->getRekeningNummer().' type: '.$transactie->getType().' Met als opmerking '.$transactie->getOpmerking();
+ echo '<hr>';
+ $transactie->MaakOver($conn, $rekening_2, $rekening);
 ?>
 
 <html>
@@ -96,19 +95,17 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 								alert(xhr.responseText);
 							}
 						}
-					}
+					};
 					xhr.send(params);
 		        }
 		    });
 		}
 
 		function loginGebruiker() {
-			var gebruikersnaam = document.getElementById('gn').value;
-			var wachtwoord = document.getElementById('ww').value;
-
 			vindGebruiker(gebruikersnaam, function(gebruiker) {
 				if(gebruiker) {
-					alert('probeer in te loggen');
+                                        alert('login');
+					header('Location: ./user/index.php');
 				} else {
 					alert('onjuiste gebruiker');
 				}
@@ -117,6 +114,9 @@ $bank = new Bank('De Centrale Bank', 'DCB');
 	</script>
 </head>
 <body>
+    <header>
+        <?= include_once 'login.php'; ?>
+    </header>
 	<input type="text" id="gn" placeholder="Gewenste gebruikersnaam"><br>
 	<input type="password" id="ww" placeholder="Wachtwoord"><br>
 	<input type="text" id="vn" placeholder="Voornaam"><br>

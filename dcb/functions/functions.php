@@ -15,5 +15,8 @@ function vindGebruiker($conn, $gebruikersnaam) {
 		return false;
 	}
 }
-
-?>
+function ZoekGebruiker($gebruikersnaam){
+    $conn = createconnection();       
+     $sql = 'SELECT * FROM dcb_gebruikers WHERE gebruikersnaam = "'.$gebruikersnaam.'"';
+     return $conn->query($sql);
+}

@@ -25,9 +25,8 @@ class Rekening {
                 $this->balans = $bl;
 	}
         function maakRekening($conn = false) {
-            $sqlMaakRekening = 'INSERT INTO dcb_rekening (rekening_nummer, user_id, balans) VALUES ("'.$this->nummer.'","'.$this->user_id.'","'.$this->balans.'")';
+            $sqlMaakRekening = 'INSERT INTO dcb_rekening (rekening_nummer, user_id, balans) VALUES ("DCB'.$this->nummer.'","'.$this->user_id.'","'.$this->balans.'")';
             $conn->query($sqlMaakRekening);
-            echo $sqlMaakRekening;
 	}
 
 }

@@ -59,7 +59,7 @@ switch($action) {
 		while($row = $result->fetch_assoc()) {
 			$hash = $row['wachtwoord'];
 			if(password_verify($wachtwoord,$hash)) {
-				// print_r($row);
+				 print_r($row);
 				$gebruiker = new Gebruiker($row['id'],$gebruikersnaam,$hash,$row['voornaam'],$row['tussenvoegsel'],$row['achternaam'],$row['aanhef'],$row['rechten']);
 				$_SESSION['gebruiker'] = $gebruiker;
 				print_r($_SESSION['gebruiker']);
